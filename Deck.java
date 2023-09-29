@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Emulate a deck of cards
@@ -10,7 +11,6 @@ import java.util.ArrayList;
 public class Deck
 {
     private List<Card> cards;
-
     /**
      * Deck constructor: Create an empty deck of cards
      */
@@ -44,7 +44,10 @@ public class Deck
      * Shuffles the cards in the deck
      */
     public void shuffle() {
-        // To be written
+        Collections.shuffle(cards);
+        for (int i = 0; i < cards.size(); i++) {
+            System.out.print(cards.get(i));
+        }
     }
     
     /**

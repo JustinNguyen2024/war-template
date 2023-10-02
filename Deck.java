@@ -46,7 +46,10 @@ public class Deck
     public void shuffle() {
         Collections.shuffle(cards);
         for (int i = 0; i < cards.size(); i++) {
-            System.out.print(cards.get(i));
+            // make card
+            Card c = cards.get(i);
+            // print 1 part of card
+            System.out.println(c.getFace());
         }
     }
     
@@ -71,10 +74,13 @@ public class Deck
      * Deal the top card of the deck and remove it from the deck
      * @returns The top card of the deck (at cards index 0)
      */
+    // place cards from players' hand to pile
     public Card dealCardFromDeck() {
-        // To be written 
+        if (halves[0] > 0) {
+            return // card at first index
+        }
         return null;
-    }
+    } 
     
     /**
      * Adds the provided card to the deck

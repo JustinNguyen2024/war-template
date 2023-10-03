@@ -15,7 +15,15 @@ public class War
     public War()
     {
         // Initializations here...
-        
+        Deck deckClass = new Deck();
+        deckClass.initializeNewDeck();
+        deckClass.shuffle();
+        // make array w players' deck
+        Deck[] abc = new Deck[2];
+        abc = deckClass.dealDeck();
+        // give decks to each player
+        Deck player1sDeck = abc[0];
+        Deck player2sDeck = abc[1];
         
         // ...then run the event loop
         this.runEventLoop();

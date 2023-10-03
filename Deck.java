@@ -10,6 +10,7 @@ import java.util.Collections;
  */
 public class Deck
 {
+
     private List<Card> cards;
     /**
      * Deck constructor: Create an empty deck of cards
@@ -71,13 +72,12 @@ public class Deck
     }
     
     /**
-     * Deal the top card of the deck and remove it from the deck
-     * @returns The top card of the deck (at cards index 0)
+     * Deal the top card of players' hand and remove it from their hand
+     * @returns The top card of their hand (at cards index 0)
      */
-    // place cards from players' hand to pile
     public Card dealCardFromDeck() {
-        if (halves[0] > 0) {
-            return // card at first index
+        if (this.cards.size()> 0) {
+            return this.cards.get(0); // card at first index
         }
         return null;
     } 

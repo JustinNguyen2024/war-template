@@ -77,17 +77,19 @@ public class Deck
      */
     public Card dealCardFromDeck() {
         if (this.cards.size()> 0) {
-            return this.cards.get(0); // card at first index
+            Card // store Card
+            this.cards.remove(0);// remove card
+            return // temp
         }
         return null;
     } 
     
     /**
-     * Adds the provided card to the deck
+     * Adds pile to players' hand
      * @param cardToAdd: Card to add to this deck
      */
     public void addCardToDeck(Card cardToAdd) {
-        // To be written
+        
     }
     
 }

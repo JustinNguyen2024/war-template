@@ -77,9 +77,9 @@ public class Deck
      */
     public Card dealCardFromDeck() {
         if (this.cards.size()> 0) {
-            Card // store Card
+            Card pile = cards.get(0); // store card from list into pile
             this.cards.remove(0);// remove card
-            return // temp
+            return pile; // temp
         }
         return null;
     } 
@@ -89,7 +89,7 @@ public class Deck
      * @param cardToAdd: Card to add to this deck
      */
     public void addCardToDeck(Card cardToAdd) {
-        
+        this.cards.add(cardToAdd);
     }
     
 }

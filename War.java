@@ -7,6 +7,8 @@
  */
 public class War
 {
+    private Deck p1Deck;
+    private Deck p2Deck;
     /**
      * Constructor for the game
      * Include your initialization here -- card decks, shuffling, etc
@@ -24,13 +26,12 @@ public class War
         // fill up array + split into temporary halves
         deck = deckClass.dealDeck();
         // take halves and give to each player
-        Deck p1Deck = deck[0];
-        Deck p2Deck = deck[1];
+        p1Deck = deck[0];
+        p2Deck = deck[1];
         
         // ...then run the event loop
         this.runEventLoop();
     }
-    
     
     /**
      * This is the game's event loop. The code in here should come
@@ -38,7 +39,19 @@ public class War
      */
     // gameplay
     public void runEventLoop() {
-
+        
+    }
+    
+    private void checkIfPlayersHaveCards() {
+        if (p1Deck.getDeckSize() == 0) {
+            if (p2Deck.getDeckSize() == 0) {
+                System.out.println("tie");
+            } else {
+                System.out.println("P2 won");
+            }
+        } else {
+            System.out.println("P1 won");
+        }
     }
     
     /**

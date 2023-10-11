@@ -7,6 +7,7 @@
  */
 public class War
 {
+    private Deck pile = new Deck();
     private Deck p1Deck;
     private Deck p2Deck;
     /**
@@ -39,6 +40,15 @@ public class War
      */
     // gameplay
     public void runEventLoop() {
+        // game stops after 300 plays
+        int playNumber = 0;
+        while (playNumber <= 300) {
+             if (playNumber == 300) {
+                turnsLimit();
+            }
+            playNumber++;
+        }
+        
         
     }
     
@@ -54,11 +64,58 @@ public class War
         }
     }
     
+    private void whoPlayedWhat() {
+        //System.out.println("P1: " + pile.getFace(pile.getDeckSize()-2)); // compile errors both
+        //System.out.println("P2: " + pile.getFace(pile.getDeckSize()-1));
+    }
+    
+    private void turnsLimit() {
+        System.out.println("Game over. 300 plays have passsed.");
+        // check who has more cards when 300 plays have passed; called in event loop
+        if (p1Deck.getDeckSize() > p2Deck.getDeckSize()){
+            System.out.println("P1 has more cards. P1 wins");
+        } else if (p2Deck.getDeckSize() > p1Deck.getDeckSize()) {
+            System.out.println("P2 has more cards. P2 wins");
+        } else {
+            System.out.println("Tie. Both players have the same amount of cards");
+        }
+    }
+    
+    private void placeCard() {
+        pile.addCardToDeck(p1Deck.dealCardFromDeck());
+        pile.addCardToDeck(p2Deck.dealCardFromDeck());
+    }
+    
+    //private void largerValueInPile() {
+        // who has larger card value
+        // start with P1
+       // if (pile.getRank(pile.getDeckSize()-2) > pile.getRank(pile.getDeckSize()-1)) {
+         //   System.out.println("P1 has greater card");
+           // p1Deck.addCardToDeck(pile.dealCardFromDeck());
+        //} // check P2
+        //else if (pile.getRank(pile.getDeckSize()-1) > pile.getRank(pile.getDeckSize()-2)) {
+          //  System.out.println("P2 has greater card");
+            //p2Deck.addCardToDeck(pile.dealCardFromDeck());
+        //} else {
+          //  warSituation();
+      //  }
+    //}
+    
+    private void warSituation() {
+        System.out.println("War!");
+        //both players deal 2 cards
+        for (int go = 0; go < 2; go++) {
+            checkIfPlayersHaveCards();
+            placeCard();
+        }
+        whoPlayedWhat();
+        //largerValueInPile();
+    }
+    
     /**
      * The main method is called when Java starts your program
      */
     public static void main(String[] args) {
         War war = new War();
     }
-
 }

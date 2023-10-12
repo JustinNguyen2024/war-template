@@ -86,20 +86,22 @@ public class War
         pile.addCardToDeck(p2Deck.dealCardFromDeck());
     }
     
-    //private void largerValueInPile() {
-        // who has larger card value
-        // start with P1
-       // if (pile.getRank(pile.getDeckSize()-2) > pile.getRank(pile.getDeckSize()-1)) {
-         //   System.out.println("P1 has greater card");
-           // p1Deck.addCardToDeck(pile.dealCardFromDeck());
-        //} // check P2
-        //else if (pile.getRank(pile.getDeckSize()-1) > pile.getRank(pile.getDeckSize()-2)) {
-          //  System.out.println("P2 has greater card");
-            //p2Deck.addCardToDeck(pile.dealCardFromDeck());
-        //} else {
-          //  warSituation();
-      //  }
-    //}
+    private void largerValueInPile() {
+        //who has larger card value
+        //start with P1
+        Card p1Card = pile.getCardFromIndex(pile.getDeckSize()-2);
+        Card p2Card = pile.getCardFromIndex(pile.getDeckSize()-1);
+        if (p1Card.getRank() > p2Card.getRank()) {
+            System.out.println("P1 has greater card");
+            p1Deck.addCardToDeck(pile.dealCardFromDeck());
+        } // check P2
+        else if ((p2Card.getRank() > p1Card.getRank())) {
+            System.out.println("P2 has greater card");
+            p2Deck.addCardToDeck(pile.dealCardFromDeck());
+        } else {
+            warSituation();
+        }
+    }
     
     private void warSituation() {
         System.out.println("War!");

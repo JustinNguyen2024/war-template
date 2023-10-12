@@ -77,12 +77,25 @@ public class Deck
      */
     public Card dealCardFromDeck() {
         if (this.cards.size()> 0) {
-            Card pile = cards.get(0); // store card from list into pile
+            Card c = cards.get(0); // store card from list into temp
             this.cards.remove(0);// remove card
-            return pile; // temp
+            return c; // return temp
         }
         return null;
     } 
+    
+    /** 
+     * take in integer( @ specfied index) of the card inside the list
+     * return the card in the list
+     */
+    public Card getCardFromIndex(int idx) {
+        // 
+        if (this.cards.size() > idx) {
+             Card c = cards.get(idx);
+             return c;
+        }
+        return null;
+    }
     
     /**
      * Adds pile to players' hand

@@ -46,12 +46,12 @@ public class Deck
      */
     public void shuffle() {
         Collections.shuffle(cards);
-        for (int i = 0; i < cards.size(); i++) {
+        //for (int i = 0; i < cards.size(); i++) {
             // make card
-            Card c = cards.get(i);
+            //Card c = cards.get(i);
             // print 1 part of card
-            System.out.println(c.getFace());
-        }
+            //System.out.println(c.getFace());
+        //}
     }
     
     /**
@@ -85,14 +85,16 @@ public class Deck
     } 
     
     /** 
-     * take in integer( @ specfied index) of the card inside the list
+     * search and get a player's card from the pile
+     * use integer(@ specfied index) of the card inside the list
      * return the card in the list
      */
     public Card getCardFromIndex(int idx) {
-        // 
+        // card index has to exist inside list
         if (this.cards.size() > idx) {
-             Card c = cards.get(idx);
-             return c;
+            // store and return player's card
+            Card c = cards.get(idx);
+            return c;
         }
         return null;
     }

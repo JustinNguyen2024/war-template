@@ -10,6 +10,7 @@ public class War
     private Deck pile = new Deck();
     private Deck p1Deck;
     private Deck p2Deck;
+    
     /**
      * Constructor for the game
      * Include your initialization here -- card decks, shuffling, etc
@@ -29,11 +30,11 @@ public class War
         // take halves and give to each player
         p1Deck = deck[0];
         p2Deck = deck[1];
-        
+
         // ...then run the event loop
         this.runEventLoop();
     }
-    
+
     /**
      * This is the game's event loop. The code in here should come
      * from the War flowchart you created for this game
@@ -43,32 +44,42 @@ public class War
         // game stops after 300 plays
         int playNumber = 0;
         while (playNumber <= 300) {
-             if (playNumber == 300) {
+            if (playNumber == 300) {
                 turnsLimit();
             }
+            
+            checkIfPlayersHaveCards();
+            placeCard();
+            whoPlayedWhat();
+            largerValueInPile();
+            warSituation();
             playNumber++;
         }
-        
-        
     }
-    
+
     private void checkIfPlayersHaveCards() {
         if (p1Deck.getDeckSize() == 0) {
             if (p2Deck.getDeckSize() == 0) {
                 System.out.println("tie");
+                //System.exit(0);
             } else {
                 System.out.println("P2 won");
+                //System.exit(0);
             }
         } else {
             System.out.println("P1 won");
+            //System.exit(0);
         }
     }
-    
+
     private void whoPlayedWhat() {
-        //System.out.println("P1: " + pile.getFace(pile.getDeckSize()-2)); // compile errors both
-        //System.out.println("P2: " + pile.getFace(pile.getDeckSize()-1));
+        Card p1Card = pile.getCardFromIndex(pile.getDeckSize()-2);
+        Card p2Card = pile.getCardFromIndex(pile.getDeckSize()-1);
+
+        System.out.println("P1: " + p1Card.getFace());
+        System.out.println("P2: " + p2Card.getFace());
     }
-    
+
     private void turnsLimit() {
         System.out.println("Game over. 300 plays have passsed.");
         // check who has more cards when 300 plays have passed; called in event loop
@@ -80,15 +91,16 @@ public class War
             System.out.println("Tie. Both players have the same amount of cards");
         }
     }
-    
+
     private void placeCard() {
         pile.addCardToDeck(p1Deck.dealCardFromDeck());
         pile.addCardToDeck(p2Deck.dealCardFromDeck());
     }
-    
+
     private void largerValueInPile() {
-        //who has larger card value
-        //start with P1
+        // who has larger card value
+        // start with P1
+        // 
         Card p1Card = pile.getCardFromIndex(pile.getDeckSize()-2);
         Card p2Card = pile.getCardFromIndex(pile.getDeckSize()-1);
         if (p1Card.getRank() > p2Card.getRank()) {
@@ -102,18 +114,18 @@ public class War
             warSituation();
         }
     }
-    
+
     private void warSituation() {
         System.out.println("War!");
-        //both players deal 2 cards
+        // both players place 2 cards
         for (int go = 0; go < 2; go++) {
             checkIfPlayersHaveCards();
             placeCard();
         }
         whoPlayedWhat();
-        //largerValueInPile();
+        largerValueInPile();
     }
-    
+
     /**
      * The main method is called when Java starts your program
      */

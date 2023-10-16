@@ -46,13 +46,13 @@ public class War
         while (playNumber <= 300) {
             if (playNumber == 300) {
                 turnsLimit();
+                break;
             }
             
             checkIfPlayersHaveCards();
             placeCard();
             whoPlayedWhat();
             largerValueInPile();
-            warSituation();
             playNumber++;
         }
     }
@@ -61,14 +61,14 @@ public class War
         if (p1Deck.getDeckSize() == 0) {
             if (p2Deck.getDeckSize() == 0) {
                 System.out.println("tie");
-                //System.exit(0);
+                System.exit(0);
             } else {
                 System.out.println("P2 won");
-                //System.exit(0);
+                System.exit(0);
             }
-        } else {
+        } else if (p2Deck.getDeckSize() == 0) {
             System.out.println("P1 won");
-            //System.exit(0);
+            System.exit(0);
         }
     }
 
@@ -90,6 +90,7 @@ public class War
         } else {
             System.out.println("Tie. Both players have the same amount of cards");
         }
+        
     }
 
     private void placeCard() {
@@ -105,11 +106,11 @@ public class War
         Card p2Card = pile.getCardFromIndex(pile.getDeckSize()-1);
         if (p1Card.getRank() > p2Card.getRank()) {
             System.out.println("P1 has greater card");
-            p1Deck.addCardToDeck(pile.dealCardFromDeck());
+            p1Deck.addCardToDeck(p2Deck.dealCardFromDeck());
         } // check P2
         else if ((p2Card.getRank() > p1Card.getRank())) {
             System.out.println("P2 has greater card");
-            p2Deck.addCardToDeck(pile.dealCardFromDeck());
+            p2Deck.addCardToDeck(p1Deck.dealCardFromDeck());
         } else {
             warSituation();
         }

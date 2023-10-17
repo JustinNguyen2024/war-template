@@ -7,7 +7,7 @@
  */
 public class War
 {
-    private Deck pile = new Deck();
+    private Deck pile;
     private Deck p1Deck;
     private Deck p2Deck;
     
@@ -30,6 +30,7 @@ public class War
         // take halves and give to each player
         p1Deck = deck[0];
         p2Deck = deck[1];
+        pile = new Deck();
 
         // ...then run the event loop
         this.runEventLoop();
@@ -42,14 +43,16 @@ public class War
     // gameplay
     public void runEventLoop() {
         // game stops after 300 plays
-        int playNumber = 0;
+        int playNumber = 1;
         while (playNumber <= 300) {
             if (playNumber == 300) {
                 turnsLimit();
                 break;
             }
-            
+            //
             checkIfPlayersHaveCards();
+            System.out.println("--Round: " + playNumber +"--");
+            System.out.println("P1 has " + p1Deck.getDeckSize() + " cards, P2 has " + p2Deck.getDeckSize() + " cards");
             placeCard();
             whoPlayedWhat();
             largerValueInPile();
@@ -101,16 +104,20 @@ public class War
     private void largerValueInPile() {
         // who has larger card value
         // start with P1
-        // 
+        // then add the rest of pile into winner's deck  
         Card p1Card = pile.getCardFromIndex(pile.getDeckSize()-2);
         Card p2Card = pile.getCardFromIndex(pile.getDeckSize()-1);
         if (p1Card.getRank() > p2Card.getRank()) {
             System.out.println("P1 has greater card");
-            p1Deck.addCardToDeck(p2Deck.dealCardFromDeck());
+            for (int i = 0; i <= pile.getDeckSize(); i++) {
+                p1Deck.addCardToDeck(pile.dealCardFromDeck());
+            }
         } // check P2
         else if ((p2Card.getRank() > p1Card.getRank())) {
             System.out.println("P2 has greater card");
-            p2Deck.addCardToDeck(p1Deck.dealCardFromDeck());
+            for (int i = 0; i <= pile.getDeckSize(); i++) {
+                p2Deck.addCardToDeck(pile.dealCardFromDeck());
+            }
         } else {
             warSituation();
         }
